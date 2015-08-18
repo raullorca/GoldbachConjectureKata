@@ -12,29 +12,50 @@ namespace GoldbachConjecture
         public Tuple<int, int> Result(int number)
         {
             var primos = new int[] { 2, 3, 5, 7, 11, 17 };
+            var first = 0;
+            for (int i = 0; i < primos.Length; i++)
+            {
+                first = primos[i];
+                if (primos.Contains(number - first))
+                {
+                    break;
+                }
 
-            var first = primos[0];
-            int second = 0;
+            }
+            return new Tuple<int, int>(first, number - first);
+        }
 
-            
-            if (primos.Contains(number - first))
-                second = number - first;
-            else
+        private int[] PrimoNumberList(int numberMax)
+        {
+            List<int> primoNumberList = new List<int>();
+            for (int i = 2; i < numberMax; i++)
             {
-                first = primos[1];
-                second = number - first;
+                if (IsPrimo(i))
+                    primoNumberList.Add(i);
             }
-            if (primos.Contains(number - first))
+            return primoNumberList.ToArray();
+        }
+
+        private bool IsPrimo(int num)
+        {
+            bool primo = false;
+
+            for (int i = 1; i < (num / 2) + 1; i = i + 2)
             {
-                second = number - first;
+                if (i != 1)
+                {
+                    if (num % i == 0)
+                    {
+                        primo = true;
+                        break;
+                    }
+                }
+
             }
-            else
-            {
-                first = primos[2];
-                second = number - first;
-            }
-            return new Tuple<int, int>(first, second);
+            return primo;
         }
 
     }
+
+
 }
