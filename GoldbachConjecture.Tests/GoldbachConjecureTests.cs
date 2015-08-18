@@ -22,5 +22,22 @@ namespace GoldbachConjecture.Tests
             Assert.AreEqual(3, result.Item2);
 
         }
+
+        [TestMethod]
+        public void Test_8()
+        {
+            var result = goldbachConjecture.Result(8);
+            Assert.AreEqual(3, result.Item1);
+            Assert.AreEqual(5, result.Item2);
+        }
+
+        [TestMethod]
+        public void Test_12()
+        {
+            var result = goldbachConjecture.Result(12);
+            Assert.AreEqual(5, result.Item1);
+            Assert.AreEqual(7, result.Item2);
+        }
+
     }
 }
